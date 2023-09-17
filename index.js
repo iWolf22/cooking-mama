@@ -12,6 +12,9 @@ var body = {
 };
 var computerResponseList = [];
 var humanResponeList = [];
+var summary = "";
+var ingredients = "";
+var instructions = "";
 
 const config = new Configuration({
 	apiKey: "",
@@ -85,7 +88,8 @@ app.post("/submit", async (req, res) => {
 	First, create an eloquent 200 word summary describing the food that is being prepared.
 	Second, create a comprehensive list of all the ingredients involved in preparing the food.
 	Third, create a through step by step guide on how to prepare the food.
-	Add the four character $ after every list item and number each list item.
+	Add the character $ after every list item.
+	Number each list item.
 	Return the response in the following parsable JSON format:
 
     {
@@ -141,13 +145,18 @@ app.post("/submit", async (req, res) => {
 		}
 	}
 
+	summary = parsedResponse.First;
+	ingredients = ing_list;
+	instructions = ins_list;
+
 	// Sending info to front end, req.body["inputtedRecipe"]
 	let data = {
-		inputtedRecipe: req.body["inputtedRecipe"],
 		userInput: "true",
-		summary: parsedResponse.First,
-		ingredients: ing_list,
-		instructions: ins_list
+		summary: summary,
+		ingredients: ingredients,
+		instructions: instructions,
+		computerResponseList: computerResponseList,
+		humanResponeList: humanResponeList
 	}
 	res.render("index.ejs", data)
 
@@ -178,7 +187,10 @@ app.post("/text", async (req, res) => {
 
 	let data = {
 		userInput: "true",
-		computerResponse: computerResponse,
+		summary: summary,
+		ingredients: ingredients,
+		instructions: instructions,
+		computerResponseList: computerResponseList,
 		humanResponeList: humanResponeList
 	}
 
