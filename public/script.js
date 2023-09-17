@@ -6,18 +6,31 @@ var content = '';
 var writeContent = false;
 recognition.continuous = true;
 
+recognition.onstart = function () {
+    instructions.text("Voice Recongition is on");
+}
+
+recognition.onspeechend = function () {
+    instructions.text("No Activity");
+}
+
+recognition.onerror = function () {
+    instructions.text("Try Again");
+}
+
 recognition.onresult = function(event) {
     var current = event.resultIndex;
     var transcript = event.results[current][0].transcript;
 
     var transcriptList = transcript.split(" ");
     for (var i = 0; i < transcriptList.length; i++) {
-        if (transcriptList[i] === "start") {
+        if (transcriptList[i] === "hey") {
             writeContent = true;
+            document.getElementById('submitSpeechText').click();
+        }
         }
         if (transcriptList[i] === "submit") {
             writeContent = false;
-            document.getElementById('submitSpeechText').click();
         }
     }
 
@@ -39,8 +52,3 @@ $("#start-btn").click(function(event) {
 
     recognition.start();
 })
-
-document.getElementById('start-btn').click();
-document.getElementById('soundplayer').click();
-
-window.scrollTo(0, document.body.scrollHeight);
