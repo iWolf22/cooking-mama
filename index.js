@@ -6,6 +6,12 @@ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const { load } = require('cheerio');
 
+const textToSpeech = require('@google-cloud/text-to-speech')
+require('dotenv').config()
+const fs = require('fs')
+const util = require('util')
+const client = new textToSpeech.TextToSpeechClient()
+
 var body = {
 	ingredients: "",
 	instructions: ""
@@ -88,8 +94,8 @@ app.post("/submit", async (req, res) => {
 	First, create an eloquent 200 word summary describing the food that is being prepared.
 	Second, create a comprehensive list of all the ingredients involved in preparing the food.
 	Third, create a through step by step guide on how to prepare the food.
-	Add the character $ after every list item.
 	Number each list item.
+	Add the character $ only after every list item.
 	Return the response in the following parsable JSON format:
 
     {
@@ -122,7 +128,7 @@ app.post("/submit", async (req, res) => {
 	var ing = parsedResponse.Second;
 	var temp = "";
 	var ing_list = [];
-	for (var i = 0; i < ing.length - 1; i++) {
+	for (var i = 0; i < ing.length; i++) {
 		if (ing[i] === "$") {
 			ing_list.push(temp);
 			temp = "";
@@ -135,7 +141,7 @@ app.post("/submit", async (req, res) => {
 	var ins = parsedResponse.Third;
 	var temp = "";
 	var ins_list = [];
-	for (var i = 0; i < ins.length - 1; i++) {
+	for (var i = 0; i < ins.length; i++) {
 		if (ins[i] === "$") {
 			ins_list.push(temp);
 			temp = "";
@@ -180,6 +186,8 @@ app.post("/text", async (req, res) => {
     var computerResponse = response.data.choices[0].text;
 	computerResponseList.push(computerResponse);
 
+	convertTextToMp3()
+
 	humanResponeList.push(req.body["inputtedSpeech"]);
 
 	console.log(humanResponeList);
@@ -201,3 +209,23 @@ app.post("/text", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+
+async function convertTextToMp3() {
+	const text = computerResponseList[computerResponseList.length - 1];
+  
+	const request = {
+	  input: {text:text},
+	  voice:{languageCode:'en-US',ssmlGender:'FEMALE'},
+	  audioConfig:{audioEncoding:'MP3'}
+	}
+  
+	const [response] = await client.synthesizeSpeech(request)
+  
+	const writeFile = util.promisify(fs.writeFile)
+  
+	await writeFile("public/output.mp3", response.audioContent, "binary")
+  
+	console.log("Text to Speech has completed. Audio FIle has been saved")
+  }
+  

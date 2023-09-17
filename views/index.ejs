@@ -110,6 +110,20 @@
 
 <body>
 
+    <script>
+
+        function screenReader() {
+            setTimeout(function_name, 1000);
+        }
+
+        function function_name() {
+            console.log("test reader");
+            var audio = new Audio("../output.mp3");
+            audio.play();
+        }
+
+    </script>
+
     <div class="px-4 py-5 my-5 text-center">
 
         <h1 class="display-5 fw-bold text-body-emphasis" id="green-text">Input your favourite recipe!</h1>
@@ -206,17 +220,28 @@
                 <% } %>
 
             </div>
+
+        <div class="container" style="background-color: #d3e4cd; border-radius: 10px; padding: 20px; margin-bottom: 50px;">
+
+            <% for (var i = 0; i < humanResponeList.length; i++) { %>
+
+                <p class="lead mb-4" id="green-text"><strong style="color: blue;">User: </strong><%= humanResponeList[i] %></p>
+                <p class="lead mb-4" id="green-text"><strong style="color: red;">Comp: </strong><%= computerResponseList[i] %></p>
+
+            <% } %>
+
+
+            <form class="search" action="/text" method="POST">
+            </form>
+            <form class="search" action="/text" method="POST">
+                <input id="textbox" type="text" class="form-control" name="inputtedSpeech" placeholder="Speech to text">
+                <input id="start-btn" type="button" class="btn btn-success" value="Start" style="margin-left: 10px;">
+                <input type="submit" id="submitSpeechText" class="btn btn-success" value="Submit" style="margin-left: 10px;">
+            </form>
+            <button hidden="true" id="soundplayer" onClick="screenReader('<%= computerResponseList[computerResponseList.length - 1] %>');"></button>
+        </div>
+
         <%}%>
-
-    <form class="search" action="/text" method="POST">
-    </form>
-
-    <form class="search" action="/text" method="POST">
-        <input id="textbox" type="text" class="form-control" name="inputtedSpeech" placeholder="Speech to text">
-        <input id="start-btn" type="button" class="btn btn-success" value="Start">
-        <input type="submit" id="submitSpeechText" class="btn btn-success" value="Submit">
-    </form>
-    <p class="lead mb-4" id="instructions">Press the start button!</p>
 
 </body>
 

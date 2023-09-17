@@ -6,18 +6,6 @@ var content = '';
 var writeContent = false;
 recognition.continuous = true;
 
-recognition.onstart = function () {
-    instructions.text("Voice Recongition is on");
-}
-
-recognition.onspeechend = function () {
-    instructions.text("No Activity");
-}
-
-recognition.onerror = function () {
-    instructions.text("Try Again");
-}
-
 recognition.onresult = function(event) {
     var current = event.resultIndex;
     var transcript = event.results[current][0].transcript;
@@ -51,3 +39,8 @@ $("#start-btn").click(function(event) {
 
     recognition.start();
 })
+
+document.getElementById('start-btn').click();
+document.getElementById('soundplayer').click();
+
+window.scrollTo(0, document.body.scrollHeight);
