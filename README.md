@@ -61,22 +61,18 @@ The future of Cooking Mama is a cooking assistance application that makes browse
 
 ## Presentation
 
-![alt text](https://i.ibb.co/4YV6QNG/project.jpg)
+![alt text](https://i.ibb.co/zrnyMR4/Hack-the-North-2023-Project-Presentation.jpg)
 
 ---
 
 ## Contributors
 
-- Daniel Eskiocak <karad0012@wrdsb.ca>
-- Jacob Bakker <jacalebak@gmail.com>
+- Timothy Lu <limothytu1207@gmail.com>
 - Joshua Dierickse <joshua.dierickse@gmailcom>
-- Peter Song <petersong1113@gmail.com>
 
 ---
 
 ## License & Copyright
 
-- © Daniel Eskiocak, Laurel Heights Secondary School
-- © Jacob Bakker, Waterloo Collegiate Institute
-- © Joshua Dierickse, Waterloo Collegiate Institute
-- © Peter Song, Laurel Heights Secondary School
+- © Timothy Lu, University of Waterloo
+- © Joshua Dierickse, University of Waterloo
