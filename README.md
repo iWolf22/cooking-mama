@@ -40,7 +40,7 @@ From our experience building Cooking Mama, we have learned to implement a variet
 
 ---
 
-## What's next for Hottie Cooler
+## What's next for Cooking Mama
 The future of Cooking Mama is a cooking assistance application that makes browsers obsolete. Our next step is to expand to mobile apps on phones. This would allow for users to use the communication features of the app in the background, even when their screens are turned off.
 
 ---
