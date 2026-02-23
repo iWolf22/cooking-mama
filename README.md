@@ -8,7 +8,7 @@ Everyone knows the agony of their painstaking home cooking going awry when just 
 ---
 
 ## What it does
-Cooking Mama is a virtual cooking assistant that utilizes OpenAI to guide anyone through their favourite online recipes. Even if the user is tackling an entirely novel recipe, our tool ensures ease of cooking by going through the cooking instructions and answering any questions that may come its way. From the required ingredients and clarification on certain instructions to the exact temperature a cake needs to be baked, Cooking Mama leaves no aspects of a recipe neglected and no doubts in anyone making use of its assistance.
+Cooking Mama is a virtual cooking assistant that utilizes OpenAI to guide anyone through their favourite online recipes, through simplified instructions and a voice assistant. Even if the user is tackling an entirely novel recipe, our tool ensures ease of cooking by going through the cooking instructions and answering any questions that may come its way. From the required ingredients and clarification on certain instructions to the exact temperature a cake needs to be baked, Cooking Mama leaves no aspects of a recipe neglected and no doubts in anyone making use of its assistance.
 
 ![alt text](https://i.ibb.co/HBhz1Cq/gallery.jpg)
 
